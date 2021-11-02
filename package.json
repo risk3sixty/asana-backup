@@ -1,0 +1,42 @@
+{
+  "name": "asana-backup",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Lance Whatley <lance.whatley@risk3sixty.com>",
+  "description": "Backup your Asana Organization to AWS S3.",
+  "engines": {
+    "node": ">= 12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/risk3sixty/asana-backup"
+  },
+  "bin": {
+    "asana-backup": "./dist/asanaBackup.js"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "test": "NODE_ENV=test mocha -r ts-node/register --exit --recursive './src/**/*.spec.ts'"
+  },
+  "devDependencies": {
+    "@types/asana": "^0.18.4",
+    "@types/minimist": "^1.2.0",
+    "@types/mocha": "^7.0.2",
+    "@types/uuid": "^8.3.0",
+    "gulp": "^4.0.2",
+    "gulp-insert": "^0.5.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "mocha": "^7.1.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.771.0",
+    "axios": "^0.24.0",
+    "dotenv": "^8.2.0",
+    "minimist": "^1.2.5",
+    "uuid": "^8.3.1"
+  }
+}
