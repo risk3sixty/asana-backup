@@ -1,14 +1,13 @@
 require('dotenv').config()
 
 import axios from 'axios'
-// import minimist from 'minimist'
 import { v4 as uuidv4 } from 'uuid'
 import { uploadObject } from './libs/aws'
 import Asana from './libs/asana'
-
-// const argv = minimist(process.argv.slice(2))
 ;(async function asanaBackup() {
   try {
+    const orgName = process.env.ASANA_ORG_NAME || 'risk3sixty.com'
+
     const backupInstancePrefix = `${Date.now()}__${uuidv4()}`
     const fullPrefixBase = [
       process.env.AWS_S3_PREFIX || 'asana-backup',
@@ -16,7 +15,7 @@ import Asana from './libs/asana'
     ]
     const asana = Asana()
     const workspaces = await asana.getWorkspaces()
-    const r3sWs = workspaces.find((w: any) => w.name == 'risk3sixty.com')
+    const r3sWs = workspaces.find((w: any) => w.name == orgName)
     const exportRes = await asana.getFullExport(r3sWs.gid)
     const { data: exportData } = await axios.get(exportRes.download_url, {
       responseType: 'arraybuffer',
